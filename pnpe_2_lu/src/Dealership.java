@@ -2,7 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dealership{
-    List<Car> cars = new ArrayList<>();
+    private List<Car> cars = new ArrayList<>();
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
 
     public void printAll() {
         if (cars.isEmpty()) {
@@ -10,7 +18,7 @@ public class Dealership{
             return;
         }
         for (int i = 0; i < cars.size(); i++) {
-            System.out.println("#" + i+1 + ": "+ cars.get(i));
+            System.out.println("#" + (i + 1) + ": "+ cars.get(i));
         }
     }
 
@@ -52,11 +60,5 @@ public class Dealership{
             }
         }
         return resultCars;
-    }
-
-    public void chooseACType(Extras.ACType acType) {
-        for (Car car : cars) {
-            car.setAcType(acType);
-        }
     }
 }
