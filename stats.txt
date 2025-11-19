@@ -1,0 +1,5 @@
+Count: 0
+Sum: 0
+Avg: 0.0
+Min: null
+Max: null
