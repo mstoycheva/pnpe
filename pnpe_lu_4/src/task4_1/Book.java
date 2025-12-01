@@ -1,5 +1,6 @@
-public class Book {
+package task4_1;
 
+public class Book {
     // TODO(1): статично поле-брояч за аутоинкрементиране на id
     private static int counter = 1;
 
