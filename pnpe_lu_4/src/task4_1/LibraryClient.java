@@ -66,7 +66,7 @@ public class LibraryClient {
         }
     }
     // TODO(12) тези методи работят с scanner
-    private static void handleAdd() {
+    public static void handleAdd() {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter the title of the book: ");
         String title = in.nextLine();
@@ -87,7 +87,7 @@ public class LibraryClient {
     }
 
     // TODO(13)
-    private static void handleRent() {
+    public static void handleRent() {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter the id of the book: ");
         int id = in.nextInt();
@@ -111,7 +111,7 @@ public class LibraryClient {
     }
 
     // TODO(14)
-    private static void handleReturn() {
+    public static void handleReturn() {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter the id of the book: ");
         int id = in.nextInt();
@@ -130,7 +130,7 @@ public class LibraryClient {
 
 
     // TODO(12) тези методи работят с DataInputStream
-//    private static String handleAdd(DataInputStream in) throws IOException {
+//    public static String handleAdd(DataInputStream in) throws IOException {
 //        String title = in.readUTF();
 //        String author = in.readUTF();
 //
@@ -148,7 +148,7 @@ public class LibraryClient {
 //    }
 //
 //    // TODO(13)
-//    private static String handleRent(DataInputStream in) throws IOException {
+//    public static String handleRent(DataInputStream in) throws IOException {
 //        int id = in.readInt();
 //        String user = in.readUTF();
 //
@@ -168,7 +168,7 @@ public class LibraryClient {
 //    }
 //
 //    // TODO(14)
-//    private static String handleReturn(DataInputStream in) throws IOException {
+//    public static String handleReturn(DataInputStream in) throws IOException {
 //        int id = in.readInt();
 //
 //        Book book = findBook(id);
@@ -184,7 +184,7 @@ public class LibraryClient {
 //    }
 //
     // TODO(15)
-    private static Book findBook(int id) {
+    public static Book findBook(int id) {
         for (Book b : books) {
             if (b.getId() == id) {
                 return b;

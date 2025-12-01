@@ -2,59 +2,82 @@ package task4_2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Library {
-    // Колекцията от книги в библиотеката
-    private final List<Book> books = new ArrayList<>();
+    private ArrayList<Book> books;
+    public synchronized void handleAdd() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the title of the book: ");
+        String title = in.nextLine();
+        System.out.println("Enter the author of the book: ");
+        String author = in.nextLine();
 
-    // TODO(10): Добавете синхронизиран метод за добавяне на книга
-    // public synchronized Book addBook(String title, String author) { ... }
-    public synchronized Book addBook(String title, String author) {
-        // TODO(10):
-        // 1. Проверете, че title и author не са празни (по желание).
-        // 2. Създайте нов обект Book.
-        // 3. Добавете го в списъка books.
-        // 4. Върнете създадената книга.
-        return null; // временно
+        if (title.isBlank()) {
+            return;
+        }
+        if (author.isBlank()) {
+            return;
+        }
+
+        Book newBook = new Book(title, author);
+        books.add(newBook);
+        System.out.println("successfully added book: " + newBook);
+
     }
 
-    // TODO(11): Добавете синхронизиран метод за наемане на книга по id
-    // public synchronized String rentBook(int id, String user) { ... }
-    public synchronized String rentBook(int id, String user) {
-        // TODO(11):
-        // 1. Намерете книгата по id (използвайте помощен метод findBookById).
-        // 2. Ако няма такава книга → "Няма книга с id = ...".
-        // 3. Ако вече е наета → "Книгата вече е наета: ...".
-        // 4. Иначе отбележете, че е наета (book.rent(user))
-        //    и върнете съобщение "Книгата е наета успешно: ...".
-        return "TODO rentBook"; // временно
+    // TODO(13)
+    public synchronized void handleRent() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the id of the book: ");
+        int id = in.nextInt();
+        in.nextLine();
+        System.out.println("Enter the name of the user: ");
+        String user = in.nextLine();
+
+        Book book = findBook(id);
+        if (book == null) {
+            return;
+        }
+        if (book.isRented()) {
+            return;
+        }
+        if (user.isBlank()) {
+            return;
+        }
+
+        book.rent(user);
+        System.out.println("successfully rented book: " + book);
     }
 
-    // TODO(12): Добавете синхронизиран метод за връщане на книга по id
-    // public synchronized String returnBook(int id) { ... }
-    public synchronized String returnBook(int id) {
-        // TODO(12):
-        // 1. Намерете книгата по id.
-        // 2. Ако няма такава книга → "Няма книга с id = ...".
-        // 3. Ако книгата не е била наета → "Книгата не е била наета".
-        // 4. Иначе я върнете (book.returnBook())
-        //    и върнете "Книгата е върната: ...".
-        return "TODO returnBook"; // временно
+    // TODO(14)
+    public synchronized void handleReturn() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the id of the book: ");
+        int id = in.nextInt();
+        in.nextLine();
+        Book book = findBook(id);
+        if (book == null) {
+            return;
+        }
+        if (!book.isRented()) {
+            return;
+        }
+
+        book.returnBook();
+        System.out.println("successfully returned book: " + book);
     }
 
-    // TODO(13): Връщане на копие на списъка с всички книги (по желание)
     public synchronized List<Book> getAllBooks() {
-        // Примерно:
-        // return new ArrayList<>(books);
-        return new ArrayList<>(); // временно
+        return books;
     }
 
-    // TODO(14): Помощен метод за търсене на книга по id
-    private Book findBookById(int id) {
-        // TODO(14):
-        // 1. Обходете списъка books.
-        // 2. Ако намерите книга с даденото id – върнете я.
-        // 3. Ако няма такава – върнете null.
-        return null; // временно
+    public synchronized Book findBook(int id) {
+        for (Book b : books) {
+            if (b.getId() == id) {
+                return b;
+            }
+        }
+        return null;
     }
 }
